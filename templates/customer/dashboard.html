@@ -23,7 +23,7 @@
         <!-- Left Side -->
         <div class="flex items-center gap-4">
 
-          <!-- Icon Box -->
+          <!-- Icon -->
           <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 text-lg">
             🏪
           </div>
@@ -41,7 +41,7 @@
         </div>
 
         <!-- View Button -->
-        <a href="/transactions/{{ session['user_id'] }}?owner={{ shop['owner_id'] }}"
+        <a href="/transactions/{{ shop['owner_id'] }}/{{ session['user_id'] }}"
            class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-gray-100 transition">
           👁 View History
         </a>
