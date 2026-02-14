@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="mx-auto max-w-5xl px-6 py-10">
+
+  <h2 class="text-2xl font-semibold tracking-tight mb-2">
+    Customer Dashboard
+  </h2>
+
+  <p class="text-gray-500 mb-8">
+    Shops where you have records:
+  </p>
+
+  {% if shops|length == 0 %}
+    <p class="text-center text-gray-500 py-12">
+      No shop records found for your account.
+    </p>
+  {% else %}
+    <div class="space-y-4">
+      {% for shop in shops %}
+      <div class="bg-white border border-gray-200 rounded-2xl p-5 flex items-center justify-between shadow-sm hover:shadow-md transition">
+
+        <!-- Left Side -->
+        <div class="flex items-center gap-4">
+
+          <!-- Icon Box -->
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 text-lg">
+            🏪
+          </div>
+
+          <!-- Shop Info -->
+          <div>
+            <p class="font-medium text-gray-900">
+              {{ shop["name"] }}
+            </p>
+            <p class="text-sm text-gray-500">
+              {{ shop["phone"] }}
+            </p>
+          </div>
+
+        </div>
+
+        <!-- View Button -->
+        <a href="/transactions/{{ session['user_id'] }}?owner={{ shop['owner_id'] }}"
+           class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-gray-100 transition">
+          👁 View History
+        </a>
+
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+</div>
+
+{% endblock %}

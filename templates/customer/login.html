@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="flex items-center justify-center px-4 py-16">
+
+  <div class="w-full max-w-md bg-white border border-gray-200 rounded-xl shadow-sm p-8 space-y-6">
+
+    <!-- Title -->
+    <div>
+      <h2 class="text-2xl font-bold">Customer Login</h2>
+
+      {% if mode == "otp" %}
+        <p class="text-gray-500">
+          Login with OTP (use 1234 for demo)
+        </p>
+      {% else %}
+        <p class="text-gray-500">
+          Login with your phone number and PIN
+        </p>
+      {% endif %}
+    </div>
+
+    {% if error %}
+      <p class="text-red-600 text-sm">{{ error }}</p>
+    {% endif %}
+
+    <!-- Form -->
+    <form method="POST" class="space-y-4">
+
+      <input type="hidden" name="mode" value="{{ mode }}">
+
+      <input name="phone"
+             placeholder="Phone Number"
+             maxlength="10"
+             class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+             required>
+
+      {% if mode == "pin" %}
+      <input name="pin"
+             placeholder="4-digit PIN"
+             type="password"
+             maxlength="4"
+             class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+             required>
+      {% else %}
+      <input name="otp"
+             placeholder="Enter OTP (1234)"
+             maxlength="4"
+             class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+             required>
+      {% endif %}
+
+      <button class="w-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white py-3 rounded-md font-medium hover:opacity-90 transition">
+        {% if mode == "pin" %}
+          Login with PIN
+        {% else %}
+          Verify OTP
+        {% endif %}
+      </button>
+
+    </form>
+
+    <!-- Toggle -->
+    <div class="text-center pt-2">
+      {% if mode == "pin" %}
+        <a href="/customer/login?mode=otp"
+           class="text-indigo-600 font-medium hover:underline">
+          Use OTP instead
+        </a>
+      {% else %}
+        <a href="/customer/login"
+           class="text-indigo-600 font-medium hover:underline">
+          Login with PIN instead
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

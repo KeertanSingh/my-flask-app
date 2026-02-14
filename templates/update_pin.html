@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mx-auto max-w-md px-6 py-12">
+
+  <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-8 space-y-6">
+
+    <h2 class="text-xl font-semibold tracking-tight">
+      Update PIN
+    </h2>
+
+    <form method="POST" class="space-y-6">
+
+      <!-- Old PIN -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">
+          Old PIN
+        </label>
+        <input type="password"
+               name="old_pin"
+               maxlength="4"
+               required
+               class="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 bg-white
+                      focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+      </div>
+
+      <!-- New PIN -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">
+          New 4-digit PIN
+        </label>
+        <input type="password"
+               name="new_pin"
+               maxlength="4"
+               required
+               class="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 bg-white
+                      focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+      </div>
+
+      <!-- Button -->
+      <button class="w-full bg-gradient-to-r from-indigo-500 to-purple-600
+                     text-white py-3.5 rounded-lg font-medium
+                     hover:shadow-md hover:scale-[1.01]
+                     active:scale-[0.99] transition duration-200">
+        Update PIN
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+{% endblock %}

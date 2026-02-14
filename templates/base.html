@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Khata</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gray-50 text-gray-900 antialiased">
+
+  <!-- Header -->
+  <header class="bg-white/80 backdrop-blur border-b border-gray-200 sticky top-0 z-10">
+    <div class="mx-auto max-w-5xl px-6 py-5 flex items-center justify-between">
+
+      <!-- Left: Logo + Back -->
+      <div class="flex items-center gap-4">
+
+        <!-- Back Button -->
+        {% if session.get("role") == "owner" and request.path not in ['/','/owner/dashboard'] %}
+          <a href="/owner/dashboard"
+             class="text-sm px-3 py-1.5 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition">
+            ← Back
+          </a>
+        {% elif session.get("role") == "customer" and request.path not in ['/','/customer/dashboard'] %}
+          <a href="/customer/dashboard"
+             class="text-sm px-3 py-1.5 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition">
+            ← Back
+          </a>
+        {% endif %}
+
+        <!-- Logo -->
+        <h1 class="text-lg font-semibold tracking-tight">
+          <a href="/" class="hover:opacity-80 transition">
+            Digital Khata
+          </a>
+        </h1>
+
+      </div>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-6 text-sm">
+
+        {% if session.get("user_id") %}
+          <span class="text-gray-500">
+            {{ session.get("name") }}
+          </span>
+
+          <a href="/update-pin"
+             class="hover:text-gray-900 transition">
+            Update PIN
+          </a>
+
+          <a href="/logout"
+             class="text-red-600 hover:text-red-700 transition">
+            Logout
+          </a>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </header>
+
+  <main class="px-4">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="fixed bottom-4 right-6 text-xs text-gray-400">
+    Developed by Komalpreet Kaur & Harpreet Kaur
+  </footer>
+
+</body>
+</html>
